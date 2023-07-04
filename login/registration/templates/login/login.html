@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% include 'message.html' %}
+{%block content%}
+<a aria-hidden="true" href="{% provider_login_url 'google' %}">Google</a>
+<a href="{% provider_login_url 'facebook' method='js_sdk' %}">Facebook Connect</a>
+{% if user.authenticated %}
+    Ready!!!
+{% endif %}
+    <div class="center">
+	  <form method="post" class="card" novalidate>
+	  	{% csrf_token %}
+	    <h2 class="text-center">Log in to your account</h2>
+
+            {{ form.as_p }} 
+            {% if form.errors %}
+                <small>{{ field.errors|striptags }}</small> 
+            {% endif %}
+		
+		<button type="submit">
+            Log in
+        </button>
+
+		<hr>
+        {% if not user.is_authenticated %}
+		<p class="text-center">Forgot your password <a href="{% url 'password-reset'%}">Reset Password</a></p>
+		<p class="text-center">Don't have a account? <a href="{% url 'signup' %}">Join Now</a></p>
+        {% endif %}
+	</form>
+</div>
+
+{%endblock content%}
