@@ -12,6 +12,9 @@ ipython = "*"
 python-social-auth = "*"
 django-allauth = "*"
 social-auth-app-django = "*"
+django-extensions = "*"
+werkzeug = "*"
+pyopenssl = "*"
 
 [dev-packages]
 
