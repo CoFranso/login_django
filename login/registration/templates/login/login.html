@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
-<!-- {% providers_media_js %} -->
+{% providers_media_js %}
 {% include 'message.html' %}
 {%block content%}
 <a aria-hidden="true" href="{% provider_login_url 'google' %}">Google</a>
-<a href="{% provider_login_url 'facebook' method='oauth2' %}">Facebook</a>
+<a href="{% provider_login_url 'facebook' %}">Facebook</a>
 {% if user.authenticated %}
     Ready!!!
 {% endif %}

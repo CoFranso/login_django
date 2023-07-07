@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_bootstrap5',
 
+    # 'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -76,10 +77,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
 ]
+
+SITE_ID = 2
 
 WSGI_APPLICATION = 'login.wsgi.application'
 
@@ -139,7 +143,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
-        ],
+            ],
         'AUTH_PARAMS': {
             'access_type': 'online',
         },
@@ -149,9 +153,16 @@ SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
         # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
+        'SCOPE': [
+            'email',
+            'public_profile'
+            ],
+        'AUTH_PARAMS': {
+            'auth_type': 'reauthenticate'
+            },
+        'INIT_PARAMS': {
+            'cookie': True
+            },
         'FIELDS': [
             'id',
             'first_name',
@@ -161,12 +172,12 @@ SOCIALACCOUNT_PROVIDERS = {
             'name_format',
             'picture',
             'short_name'
-        ],
+            ],
         'EXCHANGE_TOKEN': True,
         # 'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': False,
-        'VERSION': 'v13.0',
-        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+        'VERSION': 'v17.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v17.0',
     }
 }
 
